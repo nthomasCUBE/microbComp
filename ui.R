@@ -28,15 +28,14 @@ body, label, input, button, select {
 		tabsetPanel(id = "tabset",
 		tabPanel("microbComp - comparison between OTU frequency tables",
 			fileInput("file1", "OTU table 1", multiple = TRUE, accept = c("text/text", ".txt")),
+			selectInput("sfile1", label="",choices = list(""), selected = 1),
 			fileInput("file2", "OTU table 2", multiple = TRUE, accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
-			actionButton("goButton", "Analyse dataset!")
-		)
-		)
-		),
+			selectInput("sfile2", label="",choices = list(""), selected = 1),
+			actionButton("goButton", "Analyse dataset!")))),
 		mainPanel(
 			useShinyjs(),
-			plotOutput(outputId = "plot"),
-			plotOutput(outputId = "plot2")
+			plotOutput(outputId = "plot")#,
+			#plotOutput(outputId = "plot2")
 		)
 	)
 )
