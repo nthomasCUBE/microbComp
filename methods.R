@@ -7,7 +7,7 @@ library(xlsx)
 
 options(stringsAsFactors=FALSE)
 
-cmp_files=function(A, B, A_i, B_i, output){
+cmp_files=function(A, B, A_i, B_i, C_i, output){
 	print(c("::cmp_files"))
 	
 	d1=read.csv(A,sep="\t",header=T)
@@ -15,8 +15,9 @@ cmp_files=function(A, B, A_i, B_i, output){
 	
 	u_species=c()
 	
-	cur_pos=4
-
+	cur_pos=as.integer(C_i)
+	print(cur_pos)
+	
 	sel_col1=c()
 	for(x in 1:dim(d1)[1]){
 		c_v=d1[x,dim(d1)[2]]
@@ -56,11 +57,10 @@ cmp_files=function(A, B, A_i, B_i, output){
 		df=rbind(df,c(cs1,cs2))
 	}
 	
-	print(df)
-	print(u_species)
 	rownames(df)=u_species
+	print(df)
 	
 	output$plot=renderPlot({
-		plot(df[,1],df[,2],log="xy",cex=2,col="red",pch=20,xlab="OTU table 1",ylab="OTU table 2",cex.lab=1.5,background="blue")
+		plot(df[,1],df[,2],log="xy",cex=2,col="red",pch=20,xlab="OTU table 1",ylab="OTU table 2",cex.lab=1.5)
 	});
 }

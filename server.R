@@ -50,7 +50,7 @@ server <- function(input, output, session)
 		print(paste0("file1::",input$file1))
 		print(paste0("file2::",input$file2))
 		
-		cmp_files(input$file1$datapath,input$file2$datapath,input$sfile1,input$sfile2,output)
+		cmp_files(input$file1$datapath,input$file2$datapath,input$sfile1,input$sfile2,input$staxon,output)
 
 
 

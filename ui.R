@@ -54,11 +54,11 @@ body, label, input, button, select {
 			selectInput("sfile1", label="",choices = list(""), selected = 1),
 			fileInput("file2", "OTU table 2", multiple = TRUE, accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
 			selectInput("sfile2", label="",choices = list(""), selected = 1),
+			selectInput("staxon", label="",choices = list("Kingdom"=1,"Phylum"=2,"Class"=3,"Order"=4,"Family"=5,"Genus"=6,"Species"=7), selected = 5),
 			actionButton("goButton", "Analyse dataset!")))),
 		mainPanel(
 			useShinyjs(),
-			plotOutput(outputId = "plot")#,
-			#plotOutput(outputId = "plot2")
+			plotOutput(outputId = "plot")
 		)
 	)
 )
