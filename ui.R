@@ -15,14 +15,37 @@ tags$head(
 	.shiny-output-error {
 	visibility: hidden;
 }
-body {
-	#background-color: #23443333;
+.a {
+    color: #555;
+    cursor: default;
+    background-color: #ff000044;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
 }
+
+body {
+	background-color: #23443333;
+	font-size: 22px;
+}
+
+input {
+  font-family: 'Lobster', cursive;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #ad1d28;
+}
+
+button {
+   background-color: #ff0000;
+   color: #ff0000;
+}
+
+
 body, label, input, button, select { 
 	font-family: 'Arial';
 }"))
   ), 
-  theme = shinytheme("united"),  useShinyjs(), useShinyalert(), 
+   useShinyjs(), useShinyalert(), 
 	sidebarLayout(
 		sidebarPanel(
 		tabsetPanel(id = "tabset",
