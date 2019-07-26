@@ -10,7 +10,7 @@ options(stringsAsFactors=FALSE)
 
 server <- function(input, output, session)
 {
-	v <- reactiveValues(file1=NULL, file2=NULL, cfile1=NULL, cfile2=NULL)
+	v <- reactiveValues(file1=NULL, file2=NULL, species=NULL, cfile1=NULL, cfile2=NULL)
 
 	#	----------------------------------------------
 	#	Microbiome dataset 1
@@ -43,6 +43,14 @@ server <- function(input, output, session)
 	})
 	
 	#	----------------------------------------------
+	#	Taxonomic groups
+	#	----------------------------------------------
+	observeEvent(input$species,{
+		source("methods.R")
+		v$species=input$species
+	})	
+	
+	#	----------------------------------------------
 	#	Go Button
 	#	----------------------------------------------
 	observeEvent(input$goButton,{
@@ -50,7 +58,7 @@ server <- function(input, output, session)
 		print(paste0("file1::",input$file1))
 		print(paste0("file2::",input$file2))
 		
-		cmp_files(input$file1$datapath,input$file2$datapath,input$sfile1,input$sfile2,input$staxon,output)
+		cmp_files(input$file1$datapath,input$file2$datapath,input$sfile1,input$sfile2,input$species, output)
 
 
 
