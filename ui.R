@@ -55,7 +55,7 @@ body, label, input, button, select {
 			fileInput("file2", "OTU table 2", multiple = TRUE, accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
 			selectInput("sfile2", multiple = TRUE, label="",choices = list(""), selected = 1),
 			selectInput("species", label="Taxonomic groups",choices = list("kingdom","phylum","class","order","family","genus","species"), selected = 1),
-			selectInput("measure", label="Maﬂzahl",choices = list("mean","median","sum"), selected = 1),
+			selectInput("measure", label="Representative abundance in all samples",choices = list("mean","median","sum"), selected = 1),
 			selectInput("normalization", label="Normalization",choices = list("raw values","relative frequency"), selected = 1),
 			actionButton("goButton", "Analyse dataset!")))),
 		mainPanel(

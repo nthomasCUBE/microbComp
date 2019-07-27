@@ -113,8 +113,10 @@ cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, my_normalizat
 	print("prepare calculation ended...")
 	output$plot=renderPlot({
 		plot(df[,1],df[,2],log="xy",cex=0,col="red",pch=20,xlab="OTU table 1",ylab="OTU table 2",cex.lab=1.5,background="blue")
+		my_col=rep("blue",dim(df)[1])
+		my_col[df[,3]<0.05]="red"
+		points(df[,1],df[,2],pch=20,cex=5*(1-df[,3]),col=my_col)
 		text(df[,1],df[,2],log="xy",u_species)
-		points(df[,1],df[,2],pch=20,cex=5*(1-df[,3]),col="blue")
 	});
 	
 }
