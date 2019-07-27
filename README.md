@@ -7,4 +7,6 @@ and customized scripts.
 
 It can be started by downloading the package and executing the following:
 
+```
 source("ui.R"); source("server.R"); source("methods.R"); shinyApp(ui,server);
+```
