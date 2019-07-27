@@ -1,11 +1,7 @@
 options(stringsAsFactors=FALSE)
 
 cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, my_normalization, output){
-	print(c("::cmp_files"))
-	print(c("::my_taxonomic_group",my_taxonomic_group))
-	print(A_i)
-	print(B_i)
-	
+
 	d1=read.csv(A,sep="\t",header=T)
 	d2=read.csv(B,sep="\t",header=T)
 	
@@ -41,7 +37,6 @@ cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, my_normalizat
 		T2=c(T2,cur_tax_group)
 	}
 
-	print(c("my_normalization",my_normalization))
 	if(my_normalization=="relative frequency"){
 		for(x in 2:(dim(d2)[2]-1)){
 			tot_sum=sum(d2[,x])
@@ -65,7 +60,6 @@ cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, my_normalizat
 	
 	u_species=unique(u_species)
 
-	print("prepare calculations started...")
 	df=data.frame()
 	for(x in 1:length(u_species)){
 		ix1=which(T1==u_species[x])
@@ -96,8 +90,6 @@ cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, my_normalizat
 		N_a=length(unlist(d1[ix1,A_i]))
 		N_b=length(unlist(d2[ix2,B_i]))
 		if(N_a>=3 && N_b>=3){
-			print(d1[ix1,A_i])
-			print(d2[ix2,B_i])
 			wt=wilcox.test(unlist(d1[ix1,A_i]),unlist(d2[ix2,B_i]))$p.value
 			if(is.na(wt)){
 				wt=1
@@ -107,10 +99,6 @@ cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, my_normalizat
 		}
 		df=rbind(df,c(cs1,cs2,wt))
 	}
-
-	print(df)
-
-	print("prepare calculation ended...")
 	output$plot=renderPlot({
 		plot(df[,1],df[,2],log="xy",cex=0,col="red",pch=20,xlab="OTU table 1",ylab="OTU table 2",cex.lab=1.5,background="blue")
 		my_col=rep("blue",dim(df)[1])
