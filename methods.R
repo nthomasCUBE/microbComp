@@ -1,6 +1,6 @@
 options(stringsAsFactors=FALSE)
 
-cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, output){
+cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, my_normalization, output){
 	print(c("::cmp_files"))
 	print(c("::my_taxonomic_group",my_taxonomic_group))
 	print(A_i)
@@ -41,15 +41,17 @@ cmp_files=function(A, B, A_i, B_i, my_taxonomic_group, my_measure, output){
 		T2=c(T2,cur_tax_group)
 	}
 
-	for(x in 2:(dim(d2)[2]-1)){
-		tot_sum=sum(d2[,x])
-		d2[,x]=100*d2[,x]/tot_sum
-	}
-	for(x in 2:(dim(d1)[2]-1)){
-		tot_sum=sum(d1[,x])
-		d1[,x]=100*d1[,x]/tot_sum
-	}
-	
+	print(c("my_normalization",my_normalization))
+	if(my_normalization=="relative frequency"){
+		for(x in 2:(dim(d2)[2]-1)){
+			tot_sum=sum(d2[,x])
+			d2[,x]=100*d2[,x]/tot_sum
+		}
+		for(x in 2:(dim(d1)[2]-1)){
+			tot_sum=sum(d1[,x])
+			d1[,x]=100*d1[,x]/tot_sum
+		}
+	}	
 
 
 	cn1=colnames(d1)

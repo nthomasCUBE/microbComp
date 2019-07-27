@@ -1,4 +1,8 @@
 library(shiny)
+library(shinyalert)
+library(shinyBS)
+library(shinyjs)
+library(shinythemes)
 
 options(stringsAsFactors=FALSE)
 options(stringsAsFactors=FALSE)
@@ -52,6 +56,7 @@ body, label, input, button, select {
 			selectInput("sfile2", multiple = TRUE, label="",choices = list(""), selected = 1),
 			selectInput("species", label="Taxonomic groups",choices = list("kingdom","phylum","class","order","family","genus","species"), selected = 1),
 			selectInput("measure", label="Maﬂzahl",choices = list("mean","median","sum"), selected = 1),
+			selectInput("normalization", label="Normalization",choices = list("raw values","relative frequency"), selected = 1),
 			actionButton("goButton", "Analyse dataset!")))),
 		mainPanel(
 			useShinyjs(),
