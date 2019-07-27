@@ -1,10 +1,6 @@
-library(d3heatmap)
 library(shiny)
-library(shinyalert)
-library(shinyBS)
-library(shinyjs)
-library(shinythemes)
 
+options(stringsAsFactors=FALSE)
 options(stringsAsFactors=FALSE)
 options(shiny.maxRequestSize = 50*1024^2)
 
@@ -51,10 +47,11 @@ body, label, input, button, select {
 		tabsetPanel(id = "tabset",
 		tabPanel("microbComp - comparison between OTU frequency tables",
 			fileInput("file1", "OTU table 1", multiple = TRUE, accept = c("text/text", ".txt")),
-			selectInput("sfile1", label="",choices = list(""), selected = 1),
+			selectInput("sfile1", multiple = TRUE, label="",choices = list(""), selected = 1),
 			fileInput("file2", "OTU table 2", multiple = TRUE, accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
-			selectInput("sfile2", label="",choices = list(""), selected = 1),
+			selectInput("sfile2", multiple = TRUE, label="",choices = list(""), selected = 1),
 			selectInput("species", label="Taxonomic groups",choices = list("kingdom","phylum","class","order","family","genus","species"), selected = 1),
+			selectInput("measure", label="Maﬂzahl",choices = list("mean","median","sum"), selected = 1),
 			actionButton("goButton", "Analyse dataset!")))),
 		mainPanel(
 			useShinyjs(),

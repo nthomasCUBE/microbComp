@@ -1,5 +1,3 @@
-library(d3heatmap)
-library(officer)
 library(shiny)
 library(shinyalert)
 library(shinyBS)
@@ -10,7 +8,7 @@ options(stringsAsFactors=FALSE)
 
 server <- function(input, output, session)
 {
-	v <- reactiveValues(file1=NULL, file2=NULL, species=NULL, cfile1=NULL, cfile2=NULL)
+	v <- reactiveValues(file1=NULL, file2=NULL, measure=NULL, species=NULL, cfile1=NULL, cfile2=NULL)
 
 	#	----------------------------------------------
 	#	Microbiome dataset 1
@@ -49,6 +47,14 @@ server <- function(input, output, session)
 		source("methods.R")
 		v$species=input$species
 	})	
+
+	#	----------------------------------------------
+	#	Maßzahl
+	#	----------------------------------------------
+	observeEvent(input$measure,{
+		source("methods.R")
+		v$measure=input$measure
+	})	
 	
 	#	----------------------------------------------
 	#	Go Button
@@ -58,7 +64,7 @@ server <- function(input, output, session)
 		print(paste0("file1::",input$file1))
 		print(paste0("file2::",input$file2))
 		
-		cmp_files(input$file1$datapath,input$file2$datapath,input$sfile1,input$sfile2,input$species, output)
+		cmp_files(input$file1$datapath,input$file2$datapath,input$sfile1,input$sfile2,input$species, input$measure, output)
 
 
 
